@@ -8,47 +8,47 @@ import { useNavigate } from "react-router-dom";
 const Users = () => {
     const [listUsers, setListUsers] = useState([
         {
-            nome: "Luiz Gustavo",
+            name: "Luiz Gustavo",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Maria eduarda",
+            name: "Maria eduarda",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Luiz",
+            name: "Luiz",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Luiz Gustavo",
+            name: "Luiz Gustavo",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Maria eduarda",
+            name: "Maria eduarda",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Luiz",
+            name: "Luiz",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Luiz Gustavo",
+            name: "Luiz Gustavo",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Maria eduarda",
+            name: "Maria eduarda",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
         {
-            nome: "Luiz",
+            name: "Luiz",
             cpf: "517.802.545.70",
             cep: "06420-256"
         },
@@ -76,11 +76,11 @@ const Users = () => {
                 </button>
                 <div className="list-users">
                     {listUsers.map((user, index) => {
+                        user.id = index
                         return (
                             <UserData key={index} data={user} />
                         )
                     })}
-
                 </div>
             </div>
         </div >

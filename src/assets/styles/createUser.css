@@ -1,0 +1,90 @@
+.container-create_user h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-user {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    padding: 0px 4vw;
+}
+
+.personal-data {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.box-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 0px;
+    justify-content: space-between;
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label label {
+    color: var(--black-default);
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.input-label input {
+    width: 500px;
+    height: 36px;
+    line-height: 30px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #f8fafc;
+    transition: 0.5s ease;
+    padding-left: 6px;
+
+    color: var(--black-default);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid var(--black-default);
+}
+
+.input-label input:focus,
+.input-label input:hover,
+.input-label select:hover {
+    outline: none;
+    border-color: var(--green-primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 1px var(--purple);
+}
+
+.line {
+    width: 100%;
+    background-color: var(--black-default);
+    height: 1px;
+    border-radius: 5px;
+}
+
+.box-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 10px 52px;
+    border-radius: 10px;
+    border: 2px solid var(--black-default);
+    background: var(--white-default);
+    cursor: pointer;
+}
