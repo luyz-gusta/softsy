@@ -7,13 +7,17 @@ import DropdownBank from "./DropdownBank"
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 
 const SectionPersonal = (props) => {
-    const { name, setName } = useContext(DataContext)
-    const { phone, setPhone } = useContext(DataContext)
-    const { birth, setBirth } = useContext(DataContext)
-    const { email, setEmail } = useContext(DataContext)
-    const { cpf, setCpf } = useContext(DataContext)
-    const { bank, setBank } = useContext(DataContext)
-    const { cpfResponsible, setCpfResponsible } = useContext(DataContext)
+    const {
+        name, setName,
+        phone, setPhone,
+        birth, setBirth,
+        email, setEmail,
+        cpf, setCpf,
+        bank, setBank,
+        cpfResponsible, setCpfResponsible
+    } = useContext(DataContext)
+
+    const [session, setSession] = useState(props.session)
 
     useEffect(() => {
         axios.get(`https://brasilapi.com.br/api/banks/v1`).then(response => {
@@ -51,7 +55,7 @@ const SectionPersonal = (props) => {
                     label="Telefone"
                     placeHolder="Digite o número de telefone ((99) 99999-9999)"
                     value={phone}
-                    disable={props.session}
+                    disable={session}
                     onChange={(e) => setPhone(e.target.value)}
                 />
                 <InputMask
@@ -60,7 +64,7 @@ const SectionPersonal = (props) => {
                     label="Data de Nascimento"
                     placeHolder="Digite a data de nascimento (DD/MM/AAAA)"
                     value={birth}
-                    disable={props.session}
+                    disable={session}
                     onChange={(e) => {
                         setBirth(e.target.value)
                     }}
@@ -71,7 +75,7 @@ const SectionPersonal = (props) => {
                     label="Email"
                     placeHolder="Digite o email (xxxx@gmail.com)"
                     value={email}
-                    disable={props.session}
+                    disable={session}
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputMask
@@ -80,7 +84,7 @@ const SectionPersonal = (props) => {
                     label="CPF"
                     placeHolder="Digite o cpf (000.000.000-00)"
                     value={cpf}
-                    disable={props.session}
+                    disable={session}
                     onChange={(e) => setCpf(e.target.value)}
                     required={true}
                 />

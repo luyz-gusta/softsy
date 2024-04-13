@@ -6,63 +6,22 @@ import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Users = () => {
-    const [listUsers, setListUsers] = useState([
-        {
-            name: "Luiz Gustavo",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Maria eduarda",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Luiz",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Luiz Gustavo",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Maria eduarda",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Luiz",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Luiz Gustavo",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Maria eduarda",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-        {
-            name: "Luiz",
-            cpf: "517.802.545.70",
-            cep: "06420-256"
-        },
-    ])
+    const [listUsers, setListUsers] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
-        //let list = localStorage.getItem("salvedUser")
-
-        // if (list == undefined || list == null) {
-        //     localStorage.setItem("salvedUser", [])
-        // } else {
-        //     setListUsers(list)
-        // }
+        let listStorage = localStorage.getItem("salvedUser")
+        if (listStorage === null) {
+            listStorage = []
+            localStorage.setItem("salvedUser", JSON.stringify(listStorage))
+        } else {
+            if (listStorage.length < 1) {
+                setListUsers([])
+            } else {
+                let list = JSON.parse(listStorage)
+                setListUsers(list)
+            }
+        }
     }, [])
 
     return (

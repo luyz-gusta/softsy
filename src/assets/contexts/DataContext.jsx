@@ -16,36 +16,11 @@ const DataProvider = ({ children }) => {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [number, setNumber] = useState('')
+    const [neighborhood, setNeighborhood] = useState('')
     const [complement, setComplement] = useState('')
 
-    const [jsonState, setJsonState] = useState({
-        personal: {
-            name: name,
-            phone: phone,
-            birth: birth,
-            email: email,
-            cpf: cpf,
-            cpfResponsible: cpfResponsible,
-            bank: bank
-        },
-        address: {
-            cep: cep,
-            street: street,
-            city: city,
-            state: state,
-            number: number,
-            complement: complement
-        }
-    })
-
-    const genreateJson = () => {
-        if (phone == '' || phone == null && email == '' || email == null) {
-
-        } else if (name.split().length < 2) {
-
-        }
-
-        setJsonState({
+    const generateJson = () => {
+        return {
             personal: {
                 name: name,
                 phone: phone,
@@ -58,14 +33,13 @@ const DataProvider = ({ children }) => {
             address: {
                 cep: cep,
                 street: street,
+                neighborhood: neighborhood,
                 city: city,
                 state: state,
                 number: number,
                 complement: complement
             }
-        })
-
-        return jsonState
+        }
     }
 
     return (
@@ -83,7 +57,9 @@ const DataProvider = ({ children }) => {
             city, setCity,
             state, setState,
             number, setNumber,
-            complement, setComplement
+            neighborhood, setNeighborhood,
+            complement, setComplement,
+            generateJson
         }}>
             {children}
         </DataContext.Provider>

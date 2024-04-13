@@ -6,9 +6,9 @@ const UserData = ({ data }) => {
 
     return (
         <div className="user-data">
-            <p className="name">{data.name}</p>
-            <p className="cpf">{data.cpf}</p>
-            <p className="birth-date">{data.cep}</p>
+            <p className="name">{data.personal.name}</p>
+            <p className="cpf">{data.personal.cpf}</p>
+            <p className="birth-date">{data.address.cep}</p>
             <div className="action-icons">
                 <span id="view" onClick={() => {
                     sessionStorage.setItem('idUser', data.id)

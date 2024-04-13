@@ -13,7 +13,7 @@ const InputMask = (props) => {
                 value={props.value}
                 onChange={props.onChange}
                 placeholder={props.placeHolder}
-                disabled={props.disabled}
+                disabled={props.disable}
                 onBlur={props.onBlur}
                 required={props.required}
             />
