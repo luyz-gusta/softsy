@@ -1,0 +1,39 @@
+:root {
+    --black-tese: #0f0f0f;
+    --blue: #080e73;
+    --purple: #800074;
+    --white: #f6f6f6;
+    --yellow: #fbb911;
+
+    --black-default: #000000;
+    --white-default: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    width: 100vw;
+    width: 100vh;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #fbb911 0%, #fccd55 100%);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1 {
+    font-style: unset;
+    font-size: 4rem;
+    font-weight: 600;
+}
