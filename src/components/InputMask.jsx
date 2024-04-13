@@ -15,6 +15,7 @@ const InputMask = (props) => {
                 placeholder={props.placeHolder}
                 disabled={props.disabled}
                 onBlur={props.onBlur}
+                required={props.required}
             />
         </div>
     )

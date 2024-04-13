@@ -11,6 +11,8 @@ const InputData = (props) => {
                 onChange={props.onChange}
                 placeholder={props.placeHolder}
                 disabled={props.disabled}
+                required={props.required}
+                maxLength={props.length}
             />
         </div>
     )

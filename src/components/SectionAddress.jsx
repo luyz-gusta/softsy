@@ -23,6 +23,7 @@ const SectionAddress = (props) => {
                     value={cep}
                     disable={props.session}
                     onChange={(e) => setCep(e.target.value)}
+                    required={true}
                 />
                 <InputData
                     forLabel="logradouro"
@@ -55,6 +56,7 @@ const SectionAddress = (props) => {
                     value={number}
                     disable={props.session}
                     onChange={(e) => setNumber(e.target.value)}
+                    required={true}
                 />
                 <InputData
                     forLabel="complemento"

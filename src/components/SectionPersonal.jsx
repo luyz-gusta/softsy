@@ -1,8 +1,10 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../assets/contexts/DataContext"
 import InputMask from "./InputMask"
 import InputData from "./InputData"
-
+import axios from "axios"
+import DropdownBank from "./DropdownBank"
+import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 
 const SectionPersonal = (props) => {
     const { name, setName } = useContext(DataContext)
@@ -10,7 +12,24 @@ const SectionPersonal = (props) => {
     const { birth, setBirth } = useContext(DataContext)
     const { email, setEmail } = useContext(DataContext)
     const { cpf, setCpf } = useContext(DataContext)
+    const { bank, setBank } = useContext(DataContext)
     const { cpfResponsible, setCpfResponsible } = useContext(DataContext)
+
+    useEffect(() => {
+        axios.get(`https://brasilapi.com.br/api/banks/v1`).then(response => {
+            setBank(response.data)
+        }).catch(error => {
+            alert("Morreu")
+        })
+    }, [])
+
+    const handleChangeName = (event) => {
+        let value = event.target.value
+
+        if (!/\d/.test(value)) {
+            setName(value);
+        }
+    }
 
     return (
         <section className="personal-data">
@@ -22,7 +41,9 @@ const SectionPersonal = (props) => {
                     placeHolder="Digite o nome (Ex:João Vitor)"
                     value={name}
                     disable={props.session}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleChangeName}
+                    required={true}
+                    length={"200"}
                 />
                 <InputMask
                     mask={"(99) 99999-9999"}
@@ -37,10 +58,13 @@ const SectionPersonal = (props) => {
                     mask={"99/99/9999"}
                     forLabel="dataNascimento"
                     label="Data de Nascimento"
-                    placeHolder="Digite a data de nascimento ((99) 99999-9999)"
+                    placeHolder="Digite a data de nascimento (DD/MM/AAAA)"
                     value={birth}
                     disable={props.session}
-                    onChange={(e) => setBirth(e.target.value)}
+                    onChange={(e) => {
+                        setBirth(e.target.value)
+                    }}
+                    required={true}
                 />
                 <InputData
                     forLabel="email"
@@ -58,15 +82,12 @@ const SectionPersonal = (props) => {
                     value={cpf}
                     disable={props.session}
                     onChange={(e) => setCpf(e.target.value)}
+                    required={true}
                 />
-                <InputMask
-                    mask={"999.999.999-99"}
-                    forLabel="cpf"
-                    label="CPF"
-                    placeHolder="Digite o cpf (000.000.000-00)"
-                    value={cpf}
-                    disable={props.session}
-                    onChange={(e) => setCpf(e.target.value)}
+                <DropdownBank
+                    forLabel="banco"
+                    label="Banco"
+                    banks={bank}
                 />
             </div>
         </section>

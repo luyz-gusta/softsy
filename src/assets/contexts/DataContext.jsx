@@ -9,7 +9,7 @@ const DataProvider = ({ children }) => {
     const [email, setEmail] = useState('')
     const [cpf, setCpf] = useState('')
     const [cpfResponsible, setCpfResponsible] = useState('')
-    const [bank, setBank] = useState('')
+    const [bank, setBank] = useState([])
 
     const [cep, setCep] = useState('')
     const [street, setStreet] = useState('')
@@ -39,6 +39,12 @@ const DataProvider = ({ children }) => {
     })
 
     const genreateJson = () => {
+        if (phone == '' || phone == null && email == '' || email == null) {
+
+        } else if (name.split().length < 2) {
+
+        }
+
         setJsonState({
             personal: {
                 name: name,
