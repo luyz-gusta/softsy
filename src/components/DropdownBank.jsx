@@ -1,11 +1,18 @@
-const DropdownBank = (props) => {
+const DropdownBank = ({ forLabel, label, disable, onSelect, banks }) => {
     return (
         <div className="input-label">
-            <label htmlFor={props.forLabel}>{props.label}</label>
-            <select name={props.forLabel} id={props.forLabel} dir="lft" required={true}>
+            <label htmlFor={forLabel}>{label}</label>
+            <select
+                name={forLabel}
+                id={forLabel}
+                dir="lft"
+                required={true}
+                disabled={disable}
+                onChange={(e) => onSelect(e.target.value)}
+            >
                 <option value="">Escolha um banco</option>
-                {props.banks.map(bank => (
-                    <option key={bank.ispb} value={bank.name}>{bank.name}</option>
+                {banks.map(bank => (
+                    <option key={bank.ispb} value={bank.ispb}>{bank.name}</option>
                 ))}
             </select >
         </div >

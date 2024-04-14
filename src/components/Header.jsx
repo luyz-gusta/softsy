@@ -1,9 +1,10 @@
 import '../assets/styles/header.css'
+import logo from '../assets/img/logo.png'
 
 const Header = () => {
     return (
         <header>
-            <img src={require('../assets/img/logo.webp')} alt="logo da softsy" />
+            <img src={logo} alt="logo da softsy" />
         </header>
     );
 }

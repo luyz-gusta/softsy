@@ -1,17 +1,24 @@
-import { cpf as cpfChecker } from 'cpf-cnpj-validator';
+import { cpf as cpfChecker } from 'cpf-cnpj-validator'
 
 export const cpfValidator = (value) => {
+    let status = false
+
     if (value.length == 14) {
         let cpfNoFormart = value.replace('.', '')
         cpfNoFormart = cpfNoFormart.replace('-', '')
         if (!cpfChecker.isValid(cpfNoFormart)) { // Use o novo nome para a função cpf
-            alert("CPF inválido.")
+            status = false
         } else {
-            alert('CPF válido')
+            status = true
         }
     } else {
-        alert('erro')
+        status = false
     }
+
+    return status
 }
 
-export const nameValidator = (value) => value.split().length < 2 ? true : false
+export const nameValidator = (value) => {
+    let strValue = value.split(' ')
+    return strValue.length < 2 || strValue[0].length < 2 || strValue[1].length < 2 ? true : false
+}

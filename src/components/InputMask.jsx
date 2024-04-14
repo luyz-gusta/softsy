@@ -16,6 +16,7 @@ const InputMask = (props) => {
                 disabled={props.disable}
                 onBlur={props.onBlur}
                 required={props.required}
+                onBlurCapture={props.onBlur}
             />
         </div>
     )

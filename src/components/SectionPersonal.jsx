@@ -4,7 +4,9 @@ import InputMask from "./InputMask"
 import InputData from "./InputData"
 import axios from "axios"
 import DropdownBank from "./DropdownBank"
-import { cpf as cpfValidator } from 'cpf-cnpj-validator';
+import { set } from "date-fns"
+import Swal from "sweetalert2"
+import moment from "moment"
 
 const SectionPersonal = (props) => {
     const {
@@ -17,11 +19,13 @@ const SectionPersonal = (props) => {
         cpfResponsible, setCpfResponsible
     } = useContext(DataContext)
 
+    const [listBank, setListBank] = useState([])
     const [session, setSession] = useState(props.session)
+    const over18 = useState(true)
 
     useEffect(() => {
         axios.get(`https://brasilapi.com.br/api/banks/v1`).then(response => {
-            setBank(response.data)
+            setListBank(response.data)
         }).catch(error => {
             alert("Morreu")
         })
@@ -32,6 +36,36 @@ const SectionPersonal = (props) => {
 
         if (!/\d/.test(value)) {
             setName(value);
+        }
+    }
+
+    const handleChangeBank = (value) => {
+        setBank(value)
+    }
+
+    const handleChangeBirth = (event) => {
+        let value = event.target.value
+        const momentDate = moment(value, "DD/MM/YYYY")
+        if (!momentDate.isValid()) {
+            Swal.fire({
+                icon: "error",
+                title: "A Data de nascimento inserida é inválida"
+            })
+        } else {
+            const age = moment().diff(momentDate, "years")
+            if (age > 99) {
+                Swal.fire({
+                    icon: "error",
+                    title: "A Data de nascimento inserida é inválida",
+                    text: "Você tem mais de 99 anos.",
+                })
+            } else if (momentDate.isAfter(moment(), "day")) {
+                Swal.fire({
+                    icon: "error",
+                    title: "A Data de nascimento inserida é inválida",
+                    text: "A data de nascimento não pode ser posterior à data de hoje.",
+                })
+            }
         }
     }
 
@@ -68,6 +102,7 @@ const SectionPersonal = (props) => {
                     onChange={(e) => {
                         setBirth(e.target.value)
                     }}
+                    onBlur={handleChangeBirth}
                     required={true}
                 />
                 <InputData
@@ -91,7 +126,9 @@ const SectionPersonal = (props) => {
                 <DropdownBank
                     forLabel="banco"
                     label="Banco"
-                    banks={bank}
+                    banks={listBank}
+                    disable={session}
+                    onSelect={handleChangeBank}
                 />
             </div>
         </section>

@@ -3,6 +3,7 @@ import { DataContext } from "../assets/contexts/DataContext"
 import InputMask from "./InputMask"
 import InputData from "./InputData"
 import axios from "axios"
+import Swal from "sweetalert2"
 
 const SectionAddress = (props) => {
     const {
@@ -15,10 +16,10 @@ const SectionAddress = (props) => {
         complement, setComplement
     } = useContext(DataContext)
 
-    const [session, setSession] = useState(false)
+    const [session, setSession] = useState(props.session)
     const [status, setStatus] = useState(true)
 
-    const handleChangeCEP = (event) => {
+    const viaCep = (event) => {
         const value = event.target.value
 
         if (value.length == 9) {
@@ -26,16 +27,33 @@ const SectionAddress = (props) => {
             axios.get(`https://viacep.com.br/ws/${cepNoFormat}/json/`).then(response => {
                 const dataLocation = response.data
 
-                setStreet(dataLocation.logradouro)
-                setCity(dataLocation.localidade)
-                setNeighborhood(dataLocation.bairro)
-                setState(dataLocation.uf)
+                if (dataLocation.erro) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "CEP inserido é inválido",
+                        text: "Digite um cep válido",
+                    })
+                } else {
+                    setStreet(dataLocation.logradouro)
+                    setCity(dataLocation.localidade)
+                    setNeighborhood(dataLocation.bairro)
+                    setState(dataLocation.uf)
+                }
             }).catch(error => {
                 setStatus(true)
+                Swal.fire({
+                    icon: "warning",
+                    title: "Sistema de CEP fora do ar",
+                    text: "Digite manualmente os seus de endereço",
+                });
+            })
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "CEP é inválido",
+                text: "Digite um cep válido",
             })
         }
-
-        setCep(value)
     }
 
     return (
@@ -49,8 +67,9 @@ const SectionAddress = (props) => {
                     placeHolder="Digite o cep (00000-000)"
                     value={cep}
                     disable={session}
-                    onChange={handleChangeCEP}
+                    onChange={(e) => setCep(e.target.value)}
                     required={status}
+                    onBlur={viaCep}
                 />
                 <InputData
                     forLabel="logradouro"
