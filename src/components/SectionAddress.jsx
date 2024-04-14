@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../assets/contexts/DataContext"
 import InputMask from "./InputMask"
 import InputData from "./InputData"
@@ -55,6 +55,23 @@ const SectionAddress = (props) => {
             })
         }
     }
+
+    useEffect(() => {
+        if (session) {
+            let listStorage = localStorage.getItem("salvedUser")
+            let list = []
+            list = JSON.parse(listStorage)
+            let index = sessionStorage.getItem('idUser')
+            let dataUser = list[index]
+
+            setCep(dataUser.address.cep)
+            setState(dataUser.address.state)
+            setStreet(dataUser.address.street)
+            setNeighborhood(dataUser.address.neighborhood)
+            setNumber(dataUser.address.number)
+            setComplement(dataUser.address.complement)
+        }
+    }, [])
 
     return (
         <section className="address-data">
@@ -117,7 +134,7 @@ const SectionAddress = (props) => {
                     label="Complemento"
                     placeHolder="Digite o complemento (Opcional)"
                     value={complement}
-                    disable={complement}
+                    disable={session}
                     onChange={(e) => setComplement(e.target.value)}
                 />
             </div>

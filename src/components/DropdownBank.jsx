@@ -1,4 +1,4 @@
-const DropdownBank = ({ forLabel, label, disable, onSelect, banks }) => {
+const DropdownBank = ({ forLabel, label, disable, onSelect, banks, bankValue }) => {
     return (
         <div className="input-label">
             <label htmlFor={forLabel}>{label}</label>
@@ -10,9 +10,9 @@ const DropdownBank = ({ forLabel, label, disable, onSelect, banks }) => {
                 disabled={disable}
                 onChange={(e) => onSelect(e.target.value)}
             >
-                <option value="">Escolha um banco</option>
+                <option value="">{bankValue}</option>
                 {banks.map(bank => (
-                    <option key={bank.ispb} value={bank.ispb}>{bank.name}</option>
+                    <option key={bank.ispb} value={bank.name}>{bank.name}</option>
                 ))}
             </select >
         </div >

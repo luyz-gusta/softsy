@@ -2,8 +2,9 @@ import { useContext } from "react"
 import Button from "./Button"
 import { DataContext } from "../assets/contexts/DataContext"
 import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 
-const BoxButton = () => {
+const BoxButton = ({ disable }) => {
     const navigate = useNavigate()
     const { generateJson } = useContext(DataContext)
 
@@ -16,9 +17,17 @@ const BoxButton = () => {
                 list = JSON.parse(listStorage)
                 list.push(jsonUser)
                 localStorage.setItem('salvedUser', JSON.stringify(list))
+                Swal.fire({
+                    icon: "success",
+                    title: "Cadastro realizado com sucesso",
+                })
             } else {
                 list.push(jsonUser)
                 localStorage.setItem('salvedUser', JSON.stringify(list))
+                Swal.fire({
+                    icon: "sucess",
+                    title: "Cadastro realizado com sucesso",
+                })
             }
             navigate('/')
         }
@@ -26,8 +35,8 @@ const BoxButton = () => {
 
     return (
         <div className="box-btn">
-            <Button text={"Cancelar"} onClick={() => navigate('/')} />
-            <Button text={"Salvar"} onClick={() => { createUser() }} />
+            <Button text={disable ? "Voltar" : "Cancelar"} onClick={() => navigate('/')} />
+            {disable ? '' : <Button text={"Salvar"} onClick={() => { createUser() }} />}
         </div>
     )
 }

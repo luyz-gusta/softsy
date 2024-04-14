@@ -11,8 +11,7 @@ const DataProvider = ({ children }) => {
     const [email, setEmail] = useState('')
     const [cpf, setCpf] = useState('')
     const [cpfResponsible, setCpfResponsible] = useState('')
-    const [bank, setBank] = useState([])
-
+    const [bank, setBank] = useState('Escolha um banco')
     const [cep, setCep] = useState('')
     const [street, setStreet] = useState('')
     const [city, setCity] = useState('')
@@ -20,6 +19,7 @@ const DataProvider = ({ children }) => {
     const [number, setNumber] = useState('')
     const [neighborhood, setNeighborhood] = useState('')
     const [complement, setComplement] = useState('')
+    const [over18, setOver18] = useState(true)
 
     const generateJson = () => {
         let valueReturn = false
@@ -47,10 +47,21 @@ const DataProvider = ({ children }) => {
                 title: "Email e Telefone está vázio",
                 text: "Insira pelo menos um deles",
             })
+        } else if (phone != '' && phone.length < 11) {
+            Swal.fire({
+                icon: "error",
+                title: "Telefone inserido incorretamente"
+            })
         } else if (bank == '' || bank == null || bank == undefined) {
             Swal.fire({
                 icon: "error",
                 title: "Escolha um banco",
+            })
+        } else if (!over18 && !cpfValidator(cpfResponsible)) {
+            Swal.fire({
+                icon: "error",
+                title: "CPF do responsável inserido é inválido",
+                text: "Verifica se foi digitado corretamente",
             })
         } else if (cep == '' || cep == null || cep == undefined) {
             Swal.fire({
@@ -105,7 +116,8 @@ const DataProvider = ({ children }) => {
             number, setNumber,
             neighborhood, setNeighborhood,
             complement, setComplement,
-            generateJson
+            generateJson,
+            over18, setOver18
         }}>
             {children}
         </DataContext.Provider>

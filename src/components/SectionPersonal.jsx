@@ -16,19 +16,42 @@ const SectionPersonal = (props) => {
         email, setEmail,
         cpf, setCpf,
         bank, setBank,
-        cpfResponsible, setCpfResponsible
+        cpfResponsible, setCpfResponsible,
+        over18, setOver18
     } = useContext(DataContext)
 
     const [listBank, setListBank] = useState([])
     const [session, setSession] = useState(props.session)
-    const over18 = useState(true)
+    const [bankValue, setBankValue] = useState('Escolha um banco')
 
     useEffect(() => {
-        axios.get(`https://brasilapi.com.br/api/banks/v1`).then(response => {
-            setListBank(response.data)
-        }).catch(error => {
-            alert("Morreu")
-        })
+        if (session) {
+            let listStorage = localStorage.getItem("salvedUser")
+            let list = []
+            list = JSON.parse(listStorage)
+            let index = sessionStorage.getItem('idUser')
+            let dataUser = list[index]
+
+            setName(dataUser.personal.name)
+            setPhone(dataUser.personal.phone)
+            setBirth(dataUser.personal.birth)
+            setEmail(dataUser.personal.email)
+            setCpf(dataUser.personal.cpf)
+            setCpfResponsible(dataUser.personal.cpfResponsible)
+            setBankValue(dataUser.personal.bank)
+
+
+            if (dataUser.personal.cpfResponsible != '') {
+                setOver18(false)
+            }
+
+        } else {
+            axios.get(`https://brasilapi.com.br/api/banks/v1`).then(response => {
+                setListBank(response.data)
+            }).catch(error => {
+                alert("Morreu")
+            })
+        }
     }, [])
 
     const handleChangeName = (event) => {
@@ -51,6 +74,7 @@ const SectionPersonal = (props) => {
                 icon: "error",
                 title: "A Data de nascimento inserida é inválida"
             })
+            setOver18(true)
         } else {
             const age = moment().diff(momentDate, "years")
             if (age > 99) {
@@ -59,14 +83,21 @@ const SectionPersonal = (props) => {
                     title: "A Data de nascimento inserida é inválida",
                     text: "Você tem mais de 99 anos.",
                 })
+                setOver18(true)
             } else if (momentDate.isAfter(moment(), "day")) {
                 Swal.fire({
                     icon: "error",
                     title: "A Data de nascimento inserida é inválida",
                     text: "A data de nascimento não pode ser posterior à data de hoje.",
                 })
+                setOver18(true)
+            } else if (age < 18) {
+                setOver18(false)
+            } else {
+                setOver18(true)
             }
         }
+
     }
 
     return (
@@ -129,7 +160,19 @@ const SectionPersonal = (props) => {
                     banks={listBank}
                     disable={session}
                     onSelect={handleChangeBank}
-                />
+                    bankValue={bankValue}
+                />{
+                    over18 ? ''
+                        : <InputMask
+                            mask={"999.999.999-99"}
+                            forLabel="cpf"
+                            label="CPF do Responsável"
+                            placeHolder="Digite o cpf do responsável (000.000.000-00)"
+                            value={cpfResponsible}
+                            disable={session}
+                            onChange={(e) => setCpfResponsible(e.target.value)}
+                            required={true} />
+                }
             </div>
         </section>
     )

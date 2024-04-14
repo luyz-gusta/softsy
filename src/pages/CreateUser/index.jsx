@@ -19,7 +19,7 @@ const CreateUser = () => {
                     <div className="line"></div>
                     <SectionAddress session={session === 'create' ? false : true} />
                     <div className="line"></div>
-                    <BoxButton />
+                    <BoxButton disable={session === 'create' ? false : true} />
                 </form>
             </div>
         </DataProvider>
