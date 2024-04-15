@@ -89,3 +89,68 @@
     background: var(--white-default);
     cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+    .input-label input,
+    .input-label select {
+        width: 25vw;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .input-label label {
+        font-size: 1rem;
+    }
+
+    .container-create_user h1 {
+        font-size: 3rem;
+    }
+
+    .personal-data h2 {
+        font-size: 2rem;
+    }
+
+    .address-data h2 {
+        font-size: 2rem;
+    }
+
+    .action-btn {
+        font-size: 1rem;
+        padding: 10px 36px;
+    }
+}
+
+@media (max-width: 640px) {
+    .input-label input,
+    .input-label select {
+        width: 40vw;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .container-create_user h1 {
+        font-size: 2.5rem;
+    }
+
+    .personal-data h2 {
+        font-size: 1.5rem;
+    }
+
+    .address-data h2 {
+        font-size: 1.5rem;
+    }
+
+    .input-label input,
+    .input-label select {
+        width: 70vw;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .action-btn {
+        font-size: 0.85rem;
+        padding: 10px 28px;
+    }
+}
