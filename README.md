@@ -1,4 +1,4 @@
-# Softsy - Teste
+# Softsy
 
 ![](./src/assets/img/softsy.png)
 
