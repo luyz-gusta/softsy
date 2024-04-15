@@ -110,3 +110,124 @@
 .btn svg {
     font-size: 20px;
 }
+
+@media (max-width: 1440px) {
+    .user-data {
+        min-height: 80px;
+        height: 80px;
+    }
+
+    .user-data p {
+        font-size: 1.25rem;
+    }
+
+    .action-icons {
+        gap: 1.3rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .list-users {
+        height: 60vh;
+        width: 90vw;
+    }
+
+    .container-users h1 {
+        font-size: 3.5rem;
+    }
+
+    .container-users {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 960px) {
+    .list-users {
+        width: 90vw;
+    }
+
+    .user-data {
+        padding: 0px 28px;
+    }
+}
+
+@media (max-width: 740px) {
+    .container-users h1 {
+        font-size: 3rem;
+    }
+
+    .user-data {
+        height: 60px;
+        min-height: 60px;
+        padding: 0px 16px;
+    }
+
+    .user-data p {
+        font-size: 1rem;
+    }
+
+    .action-icons {
+        gap: 1rem;
+    }
+
+    .action-icons svg {
+        width: 1rem;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .btn {
+        gap: 24px;
+        padding: 4px 32px;
+    }
+
+    .btn strong {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .btn svg {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .list-users {
+        height: 50vh;
+    }
+
+    .nome {
+        grid-column: 1;
+    }
+
+    .container-users h1 {
+        font-size: 2.5rem;
+    }
+
+    .cpf {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-column: 2;
+    }
+
+    .user-data p {
+        font-size: 0.8rem;
+    }
+
+    .action-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        grid-column: 3;
+    }
+
+    .user-data {
+        padding: 0px 12px;
+        grid-template-columns: 30% 55% 15%;
+    }
+
+    .cep {
+        display: none;
+    }
+}

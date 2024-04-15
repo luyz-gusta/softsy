@@ -13,3 +13,31 @@ header img {
     height: 75px;
     width: auto;
 }
+
+@media (max-width: 1440px) {
+    header {
+        padding: 0px 60px;
+    }
+
+    header img {
+        width: 28vw;
+        height: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        height: 90px;
+    }
+}
+
+@media (max-width: 560px) {
+    header {
+        padding: 0px 24px;
+    }
+
+    header img {
+        width: 40vw;
+        height: auto;
+    }
+}
