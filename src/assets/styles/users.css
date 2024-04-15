@@ -53,6 +53,7 @@
     background-color: var(--white);
     border: 1px solid var(--black-default);
     padding: 0px 80px;
+    align-content: center;
 }
 
 .user-data p {

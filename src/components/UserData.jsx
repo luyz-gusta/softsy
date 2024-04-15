@@ -17,7 +17,7 @@ const UserData = ({ data }) => {
                 }}><FaEye /></span>
                 <span id="delete" onClick={() => {
                     Swal.fire({
-                        title: "Deseja excluir esse usuário?'",
+                        title: "Deseja excluir esse usuário?",
                         showCancelButton: true,
                         showDenyButton: true,
                         cancelButtonText: 'Não',
