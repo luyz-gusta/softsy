@@ -6,7 +6,7 @@ export const cpfValidator = (value) => {
     if (value.length == 14) {
         let cpfNoFormart = value.replace('.', '')
         cpfNoFormart = cpfNoFormart.replace('-', '')
-        if (!cpfChecker.isValid(cpfNoFormart)) { // Use o novo nome para a função cpf
+        if (!cpfChecker.isValid(cpfNoFormart)) {
             status = false
         } else {
             status = true
