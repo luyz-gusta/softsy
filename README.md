@@ -27,5 +27,5 @@ Este projeto representa uma avaliação destinada a testar os conhecimentos para
 
 ## Links
 
-[Figma](https://www.figma.com/file/ni7z8aOI8GgeZKUe6VFeKa/Softsy?type=design&node-id=0%3A1&mode=design&t=XErNBnnskF38NEzG-1).
-[Deploy](https://softsy.vercel.app/).
+- [Figma](https://www.figma.com/file/ni7z8aOI8GgeZKUe6VFeKa/Softsy?type=design&node-id=0%3A1&mode=design&t=XErNBnnskF38NEzG-1)
+- [Deploy](https://softsy.vercel.app/)
